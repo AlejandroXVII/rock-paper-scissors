@@ -7,39 +7,45 @@ function getComputerChoice(){
     if(n===0)
         return "rock";
     if(n===1)
-        return "paper"
+        return "paper";
     if(n===2)
-        return "scissors"
+        return "scissors";
 }
 
 function youWin(){
-    return "you have won!"
+    return "you have won!";
 }
 
 function youLose(){
-    return "you have lose:("
+    return "you have lose:(";
 }
  
 function playRound(playerSelection, computerSelection) {
     if (playerSelection===computerSelection)
-        console.log("is a tie ")   
+        return "is a tie ";
     else {
         if (playerSelection==="rock"){
             if (computerSelection==="scissors")
-                console.log(youWin()) 
-            else console.log(youLose()) 
+                return youWin();
+            else return youLose();
         }
         if (playerSelection==="paper"){
             if (computerSelection==="rock")
-                console.log(youWin())
-            else console.log(youLose()) 
+                return youWin();
+            else return youLose();
         }
         if (playerSelection==="scissors"){
             if (computerSelection==="paper")
-                console.log(youWin())
-            else console.log(youLose()) 
+                return youWin();
+            else return youLose();
         }
     }
 }
-
-console.log(getComputerChoice());
+let input = window.prompt("Rock! Paper! Scissors! CHOSE!:");
+input = input.toLowerCase()
+let computerInput = getComputerChoice();
+let result = playRound(input,computerInput);
+if (( input !== "rock" ) & (input !== "paper" ) & (input !== "scissors" )) console.log("ERROR!");
+else {
+    console.log("The computer has select ",computerInput," and you ",input," so ",result);
+}
