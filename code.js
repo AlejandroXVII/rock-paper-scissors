@@ -52,29 +52,36 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playOneRound(){
-    let input = window.prompt("Rock! Paper! Scissors! CHOSE!:");
-    input = input.toLowerCase()
+    let input = null 
+    do {
+        input=window.prompt("Rock! Paper! Scissors! CHOSE!:"); 
+        input = input.toLowerCase()
+    } while (( input !== "rock" ) & (input !== "paper" ) & (input !== "scissors" ));
+    
     let computerInput = getComputerChoice();
     let result = playRound(input,computerInput);
-    if (( input !== "rock" ) & (input !== "paper" ) & (input !== "scissors" )) console.log("ERROR!");
-    else {
-        console.log("The computer has select ",computerInput," and you ",input," so ",result);
+    console.log("The computer has select ",computerInput," and you ",input," so ",result); 
+}
+
+function reportScore(){
+    console.log("SCORE:\n Ties: ",ties," Player wins: ",playerWins," Computer wins: ",computerWins);
+    if (computerWins > playerWins)
+        console.log("The COMPUTER has been the winner, with",computerWins," victories.");
+    if (computerWins < playerWins)
+        console.log("The PLAYER has been the winner, with",playerWins," victories.");
+    if (computerWins === playerWins){
+        console.log("No one has win, this is a tie!");
+        console.log("So play a last game to chose the winner");
+        playOneRound();
+        reportScore();
     }
 }
 
 function game(){
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
         playOneRound();
     }
-    console.log("SCORE:\n Ties: ",ties," Player wins: ",playerWins," Computer wins: ",computerWins);
-    if (computerWins >= playerWins & computerWins >= ties)
-        console.log("The COMPUTER has been the winner, with",computerWins," victories.");
-    else{
-        if (computerWins <= playerWins & playerWins >= ties)
-            console.log("The PLAYER has been the winner, with",playerWins," victories.");
-        else
-            console.log("No one has win, this is a tie!");
-    }
+    reportScore();
 }
 
 game(); 
