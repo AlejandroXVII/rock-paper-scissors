@@ -51,46 +51,45 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playOneRound(){
-    let input = null 
-    do {
-        input="paper";//input=window.prompt("Rock! Paper! Scissors! CHOSE!:"); 
-        input = input.toLowerCase()
-    } while (( input !== "rock" ) & (input !== "paper" ) & (input !== "scissors" ));
+function playOneRound(input){
+    numVictories=2;
+    if ((computerWins<numVictories) & (playerWins<numVictories)){
+        let computerInput = getComputerChoice();
+        let result = playRound(input,computerInput);
+        console.log("The computer has select ",computerInput," and you ",input," so ",result); 
+        let reportText=("The computer has select "+computerInput+" and you "+input+" so "+result);
+        createMSJ(reportText);      
+    }
     
-    let computerInput = getComputerChoice();
-    let result = playRound(input,computerInput);
-    console.log("The computer has select ",computerInput," and you ",input," so ",result); 
-}
-
-function reportScore(){
-    console.log("SCORE:\n Ties: ",ties," Player wins: ",playerWins," Computer wins: ",computerWins);
-    if (computerWins > playerWins)
-        console.log("The COMPUTER has been the winner, with",computerWins," victories.");
-    if (computerWins < playerWins)
-        console.log("The PLAYER has been the winner, with",playerWins," victories.");
-    if (computerWins === playerWins){
-        console.log("No one has win, this is a tie!");
-        console.log("So play a last game to chose the winner");
-        playOneRound();
-        reportScore();
+    function createMSJ(Text){
+        const zoneForResults = document.querySelector('#zoneForResults');
+        const currentScore= document.createElement('p');
+        currentScore.classList.add('currentScore');
+        currentScore.textContent = Text;    
+        zoneForResults.appendChild(currentScore);
     }
-}
-
-function game(){
-    for (let i = 0; i < 5; i++) {
-        playOneRound();
+    
+    if (computerWins===numVictories){
+        reportText=("SCORE:\n Ties: "+ties+" Player wins: "+playerWins+" Computer wins: "+computerWins);
+        reportText=(reportText+"\nThe COMPUTER has been the winner END TO THE GAME");
+        createMSJ(reportText);
+        playerWins=playerWins+5;
     }
-    reportScore();
+    if (playerWins===numVictories){
+        reportText=("SCORE:\n Ties: "+ties+" Player wins: "+playerWins+" Computer wins: "+computerWins);
+        reportText=(reportText+"The PLAYER has been the winner, END TO THE GAME");
+        createMSJ(reportText);
+        playerWins=playerWins+5;
+    }
+
 }
 
 let btn = document.querySelectorAll('.playerBtn');
 
 //console.log(btn)
 function display() {
-    alert('It was clicked!');
     let rpsBID=this.getAttribute('id');
-    console.log(rpsBID);
+    playOneRound(rpsBID);
 }
 for (let index = 0; index < btn.length; index++) {
     btn[index].addEventListener('click',display);
