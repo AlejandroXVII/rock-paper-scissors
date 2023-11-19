@@ -52,7 +52,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playOneRound(input){
-    numVictories=2;
+    numVictories=5;
     if ((computerWins<numVictories) & (playerWins<numVictories)){
         let computerInput = getComputerChoice();
         let result = playRound(input,computerInput);
@@ -74,12 +74,14 @@ function playOneRound(input){
         reportText=(reportText+"\nThe COMPUTER has been the winner END TO THE GAME");
         createMSJ(reportText);
         playerWins=playerWins+5;
+        computerWins=computerWins+5;
     }
     if (playerWins===numVictories){
         reportText=("SCORE:\n Ties: "+ties+" Player wins: "+playerWins+" Computer wins: "+computerWins);
         reportText=(reportText+"The PLAYER has been the winner, END TO THE GAME");
         createMSJ(reportText);
         playerWins=playerWins+5;
+        computerWins=computerWins+5;
     }
 
 }
