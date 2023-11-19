@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-flow: column;
+    align-items: space-between;
+  }
+
+.header {
+    margin: 0px 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 10px 200px;
+    background-color: #a8b3c4;
+}
+
+.footer {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.header, .introduction, .footer, .body{
+    background-color: #c7c7c7;
+    color: rgb(7, 6, 6);
+}
+
+
+button {
+    margin: 0;
+    border: none;
+    border-radius: 8px;
+    background: rgb(240, 208, 190);
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    display: flex;
+    flex: none;
+    border: rgb(68, 52, 52) solid;
+}

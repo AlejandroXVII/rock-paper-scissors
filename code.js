@@ -54,7 +54,7 @@ function playRound(playerSelection, computerSelection) {
 function playOneRound(){
     let input = null 
     do {
-        input=window.prompt("Rock! Paper! Scissors! CHOSE!:"); 
+        input="paper";//input=window.prompt("Rock! Paper! Scissors! CHOSE!:"); 
         input = input.toLowerCase()
     } while (( input !== "rock" ) & (input !== "paper" ) & (input !== "scissors" ));
     
@@ -78,10 +78,22 @@ function reportScore(){
 }
 
 function game(){
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         playOneRound();
     }
     reportScore();
 }
 
-game(); 
+let btn = document.querySelectorAll('.playerBtn');
+
+//console.log(btn)
+function display() {
+    alert('It was clicked!');
+    let rpsBID=this.getAttribute('id');
+    console.log(rpsBID);
+}
+for (let index = 0; index < btn.length; index++) {
+    btn[index].addEventListener('click',display);
+    
+}
+//btn.addEventListener('click',display);
